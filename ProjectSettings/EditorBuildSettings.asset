@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/cracker_barrel.unity
+    guid: 958c3ed8fb256914f99b67c0f7635fb4
+  - enabled: 1
+    path: Assets/menu_but_main.unity
+    guid: caa32e19353b5a84cbe23bca0c1789ae
   m_configObjects: {}

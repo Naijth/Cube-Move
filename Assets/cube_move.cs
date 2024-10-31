@@ -5,11 +5,11 @@ using UnityEngine;
 public class cube_move : MonoBehaviour
 {
     CharacterController Controller;
-    float pyOld;
-    float pxOld;
     public Vector3 gravityPower = new Vector3(0, -9, 0);
     public bool groundCheck;
     bool isSprinting;
+    public int speed = 8;
+    public int jump = 135;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +29,12 @@ public class cube_move : MonoBehaviour
     void Move()
     {
         Vector3 vector3 = gameObject.transform.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * gameObject.transform.forward;
-        vector3 = 8 * Time.deltaTime * vector3;
+        vector3 = speed * Time.deltaTime * vector3;
         if (isSprinting == true)
         {
             vector3 *= 2f;
         }
         Controller.Move(vector3);
-        float py = Input.GetAxis("Mouse Y");
-        float px = Input.GetAxis("Mouse X");
-        pyOld += px * 5;
-        pxOld -= py * 5;
-        gameObject.transform.rotation = Quaternion.Euler(0, pyOld, 0);
     }
 
     void Gravity()
@@ -47,9 +42,9 @@ public class cube_move : MonoBehaviour
         
         if (groundCheck == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
-                gravityPower.y = Mathf.Sqrt(5*27);
+                gravityPower.y = Mathf.Sqrt(jump);
             }
             if (gravityPower.y < -30)
             {
